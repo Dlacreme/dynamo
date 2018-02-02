@@ -2,9 +2,14 @@ var Dynamo = {
     Init: {
         All: function() {
             Dynamo.Init.Tooltip(); //
+<<<<<<< HEAD
             Dynamo.Init.Select($('body')); //
             Dynamo.Lazy.Preload(); //
             Dynamo.Init.Modal();
+=======
+            Dynamo.Init.Select(); //
+            Dynamo.Lazy.Preload(); //           
+>>>>>>> 9a6fb73f3ee31b318aa5a850ee4ce4d0d40e205a
         }
         ,
         Tooltip: function() {
@@ -17,6 +22,7 @@ var Dynamo = {
                 cont = $('body')
             }
             cont.find('.selecttwo:not([class^="select2"])').each(function (i, obj) {
+<<<<<<< HEAD
                 Dynamo.Init.SelectTwo(obj);
             });
         }
@@ -64,6 +70,45 @@ var Dynamo = {
                     data: {id: tmp_values[0], text: tmp_values[1]}
                 });
             }
+=======
+                selectElem = $(obj);
+
+                url = selectElem.data('url');
+                defaultValues = selectElem.data('value');
+                isMultiple = selectElem('multiple');
+
+                params = {
+                    width: 'resolve'
+                };
+
+                // Is Ajax?
+                // Url should fetch array with text: 'text to display', id: 12 #object id
+                if (url !== undefined) {
+                    params.ajax = {
+                        url: url,
+                        dataType: 'json'
+                    };
+                }
+
+                // Is Multiple?
+                // Then id should be splitted using coma
+                if (isMultiple != undefined) {
+                    params.multiple = true;
+                    params.separator = ',';
+                }
+
+                // Init object
+                $(selectElem).select2(params);
+                
+                // Do we have default value?
+                if (defaultValues !== undefined) {
+                    tmp_values = defaultValues.split("|");
+                    $(selectElem).select2("trigger", "select", {
+                        data: {id: tmp_values[0], text: tmp_values[1]}
+                    });
+                }
+            });
+>>>>>>> 9a6fb73f3ee31b318aa5a850ee4ce4d0d40e205a
         }
     }
     ,
@@ -100,6 +145,7 @@ var Dynamo = {
         **  - dynamically inject data within tag or input // Useful for modal
         **  - modal interaction
         */
+<<<<<<< HEAD
         Set: function (mappingTag, mappingInput) {
             for (id in mappingTag) { $('#' + id).text(mappingTag[id]); }
             for (id in mappingInput) {
@@ -147,3 +193,10 @@ var Dynamo = {
         }
     }
 }
+=======
+        Html: function(url) {
+            window.location.replace(url);
+        }
+    }
+}
+>>>>>>> 9a6fb73f3ee31b318aa5a850ee4ce4d0d40e205a
